@@ -1,10 +1,14 @@
-macro(gonapps_genVersion version soversion)
+macro(gonapps_setVersion version soversion)
 set(version ${version})
 set(soversion ${soversion})
 string(REPLACE "." ";" version_list ${version})
 list(GET version_list 0 version_major)
 list(GET version_list 1 version_minor)
 list(GET version_list 2 version_patch)
+endmacro()
+
+macro(gonapps_genVersion version soversion)
+gonapps_setVersion(${version} ${soversion})
 configure_file("${PROJECT_SOURCE_DIR}/src/${PROJECT_NAME}_Version.h.in"
                "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_Version.h" @ONLY)
 include_directories(${PROJECT_BINARY_DIR})
