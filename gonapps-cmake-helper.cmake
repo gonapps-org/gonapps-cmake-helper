@@ -1,4 +1,4 @@
-macro(vinbero_genVersion version soversion)
+macro(gonapps_genVersion version soversion)
 set(version ${version})
 set(soversion ${soversion})
 string(REPLACE "." ";" version_list ${version})
@@ -10,7 +10,7 @@ configure_file("${PROJECT_SOURCE_DIR}/src/${PROJECT_NAME}_Version.h.in"
 include_directories(${PROJECT_BINARY_DIR})
 endmacro()
 
-macro(vinbero_setBuildType)
+macro(gonapps_setBuildType)
 option(BUILD_WITH_COVERAGE "Build with coverage" OFF)
 if(${BUILD_WITH_COVERAGE})
   message("** Build with coverage")
@@ -24,7 +24,7 @@ endif()
 message("** Build type is ${CMAKE_BUILD_TYPE}")
 endmacro()
 
-macro(vinbero_genAuthors)
+macro(gonapps_genAuthors)
 execute_process(COMMAND git fetch --all)
 execute_process(COMMAND sh -c "git branch -a | grep remotes/origin/master | wc -l" ERROR_QUIET OUTPUT_VARIABLE master_branch_exists)
 if(master_branch_exists EQUAL 1)
