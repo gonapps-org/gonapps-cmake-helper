@@ -7,13 +7,6 @@ list(GET version_list 1 version_minor)
 list(GET version_list 2 version_patch)
 endmacro()
 
-macro(gonapps_genVersion version soversion)
-gonapps_setVersion(${version} ${soversion})
-configure_file("${PROJECT_SOURCE_DIR}/src/${PROJECT_NAME}_Version.h.in"
-               "${PROJECT_BINARY_DIR}/${PROJECT_NAME}_Version.h" @ONLY)
-include_directories(${PROJECT_BINARY_DIR})
-endmacro()
-
 macro(gonapps_setBuildType)
 option(BUILD_WITH_COVERAGE "Build with coverage" OFF)
 if(${BUILD_WITH_COVERAGE})
@@ -26,6 +19,7 @@ if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
   set_property(CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS "Debug" "MinSizeRel" "Release" "RelWithDebInfo")
 endif()
 message("** Build type is ${CMAKE_BUILD_TYPE}")
+string(TOUPPER ${CMAKE_BUILD_TYPE} build_type)
 endmacro()
 
 macro(gonapps_genAuthors)
