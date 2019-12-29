@@ -35,8 +35,5 @@ macro(gonapps_setClangFormat)
   file(GLOB srcs
        "${PROJECT_SOURCE_DIR}/src/*.h"
        "${PROJECT_SOURCE_DIR}/src/*.c")
-  #string(REPLACE ";" " " srcs "${srcs}")
-  message("sources are ${srcs}")
-  message("${PROJECT_SOURCE_DIR}/.clang-format")
   add_custom_target(format COMMAND clang-format -style=file -i ${srcs})
 endmacro()
